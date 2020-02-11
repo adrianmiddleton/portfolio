@@ -1,1 +1,119 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JQuery Crash Course -Selectors</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel='stylesheet' href='events.css' type='text/css' media='all' />
+</head>
+<body>
+  
+  <style type="text/css">
+   #calculator {
+            width: 170px;
+            background-color: #484848;
+            padding: 20px;
+            border-radius: 10px;
+        }
+     #result {
+            width: 155px;
+            height: 35px;
+            background-color: #cddecc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: right;
+            line-height: 34px;
+            font-family: digital;
+            padding: 0px 5px 0px 5px;
+            font-size: 25px;
+            overflow: hidden;
+            box-shadow: inset 0 0px 3px;
+        }
+     .key {
+            width: 35px;
+            background-color: #eeeeee;
+            display: inline-block;
+            margin: 3px 0px 8px 3px;
+            vertical-align: bottom;
+            text-align: center;
+            padding: 5px 0px 5px 0px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 3px 0 #a1a1a1, 0 2px 5px rgba(0, 0, 0, .75);
+        }
+  </style>
+  
+    <header>
+
+        <h1>JQuery - Simple Calculator by Adrian Middleton</h1>
+    </header>
+    <div id="container">
+       
+      <div id="calculator">
+        <div id="result"></div>
+        <span class="key">7</span>
+        <span class="key">8</span>
+        <span class="key">9</span>
+        <span class="key clear-key">C</span>
+        <span class="key">4</span>
+        <span class="key">5</span>
+        <span class="key">6</span>
+        <span class="key">/</span>
+        <span class="key">1</span>
+        <span class="key">2</span>
+        <span class="key">3</span>
+        <span class="key">*</span>
+        <span class="key">0</span>
+        <span class="key">00</span>
+        <span class="key">.</span>
+        <span class="key">+</span>
+        <span class="key equal-key">=</span>
+        <span class="key">-</span>
+    </div>
+
+    </div>
+        
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var displayValue = '0';   
+            $('#result').text(displayValue);
+ 
+            $('.key').each(function(index, key){       
+                $(this).click(function(e){
+                    if(displayValue == '0') displayValue = '';
+                    if($(this).text() == 'C')
+                    {
+                        displayValue = '0';
+                        $('#result').text(displayValue);
+                    }
+                    else if($(this).text() == '=')
+                    {
+                        try
+                        {
+                            displayValue = eval(displayValue);
+                            $('#result').text(displayValue);
+                            displayValue = '0';
+                        }
+                        catch (e)
+                        {
+                            displayValue = '0';
+                            $('#result').text('ERROR');
+                        }               
+                    }
+                    else
+                    {
+                        displayValue += $(this).text();
+                        $('#result').text(displayValue);
+                    }
+                    e.preventDefault()
+                })
+            })
+        })
+</script>
+
+</body>
+</html>

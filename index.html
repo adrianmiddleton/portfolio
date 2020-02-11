@@ -1,41 +1,79 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Calculator using JQuery</title>
+    <title>Simple JQuery Calculator by Adrian Middleton</title>
     <style type="text/css">
         body {
-            font: 100%/1.618 sans-serif;
+            font: 100%/1.618 verdana,sans-serif;
+			margin: 0;
+			color: #222;
         }
+		
+		h1 {
+			font-size: 35px;
+			margin: 0 0 20px 0;
+			text-transform: uppercase;
+		}
+		
+		h2 {
+			font-size: 22px;
+			font-style: italic;
+			color: #333;
+			margin: -10px 0 0 0;
+		}
+		
+		#page-container {
+			width:100%;
+			margin:auto;
+			padding: 0;
+		}
+		
+		header {
+			text-align: center;
+			background-color: #ececec;
+			padding: 50px;
+			margin: 0 0 40px 0;
+			box-shadow: 10px 10px 5px #c0c0c0;
+		}
+		
+		p {
+			text-align: center;
+			font-size: 14px;
+			font-weight: 500;
+			padding: 30px;
+		}
        
-        #calculator {
-            width: 170px;
+        #jquery-calculator {
+            width: 250px;
             background-color: #484848;
-            padding: 20px;
+            padding: 20px 20px 40px 20px;
             border-radius: 10px;
+			margin:auto;
         }
        
         #result {
-            width: 155px;
-            height: 35px;
+            width: 235px;
+            height: 55px;
             background-color: #cddecc;
             border-radius: 5px;
             margin-bottom: 15px;
             text-align: right;
-            line-height: 34px;
+            line-height: 54px;
             font-family: digital;
-            padding: 0px 5px 0px 5px;
-            font-size: 25px;
+            padding: 0px 10px 0px 5px;
+            font-size: 32px;
             overflow: hidden;
             box-shadow: inset 0 0px 3px;
         }
        
         .key {
-            width: 35px;
+            width: 55px;
             background-color: #eeeeee;
             display: inline-block;
             margin: 3px 0px 8px 3px;
             vertical-align: bottom;
             text-align: center;
-            padding: 5px 0px 5px 0px;
+            padding: 10px 0px 10px 0px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
@@ -43,7 +81,7 @@
         }
        
         .equal-key {
-            width: 120px;
+            width: 180px;
             background-color: #4a9840;
             color: white;
         }
@@ -66,6 +104,17 @@
         $(document).ready(function(){
             var displayValue = '0';   
             $('#result').text(displayValue);
+ 
+			$('.equal-key').click(function(){
+				$('#result').css('background-color', 'green');
+				$('#result').css('color', 'white');
+			}); 
+			
+			$('.clear-key').click(function(){
+				$('#result').css('background-color', '#cddecc');
+				$('#result').css('color', 'black');
+				
+			});
  
             $('.key').each(function(index, key){       
                 $(this).click(function(e){
@@ -102,7 +151,17 @@
 </head>
  
 <body>
-    <div id="calculator">
+   
+  <div id="page-container">
+  
+  <header>
+	<h1>Simple Calculator using JQuery</h1>
+	<h2>by Adrian Middleton</h2>
+  </header>
+  
+  <p>Below is a calculator driven by JQuery for basic functionality, along with CSS manipulation on click events (on certain keys/buttons)...</p>
+    
+    <div id="jquery-calculator">
         <div id="result"></div>
         <span class="key">7</span>
         <span class="key">8</span>
@@ -120,8 +179,11 @@
         <span class="key">00</span>
         <span class="key">.</span>
         <span class="key">+</span>
-        <span class="key equal-key">=</span>
         <span class="key">-</span>
+		<span class="key equal-key">=</span>
     </div>
+  
+  </div>
+    
 </body>
 </html>
